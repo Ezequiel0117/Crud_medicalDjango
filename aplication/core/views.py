@@ -10,9 +10,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from aplication.core.forms import DoctorForm, MedicationForm
 from aplication.core.models import Doctor, Medications
-from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DeleteView, CreateView, UpdateView
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
