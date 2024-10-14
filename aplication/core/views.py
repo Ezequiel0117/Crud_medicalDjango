@@ -12,6 +12,8 @@ from aplication.core.forms import DoctorForm, MedicationForm
 from aplication.core.models import Doctor, Medications
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DeleteView, CreateView, UpdateView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
          
@@ -30,7 +32,7 @@ def home(request):
 #     print(data)
 #     return render(request,"core/doctor/list.html",data)
 
-class doctor_ListView(ListView):
+class Doctor_ListView(ListView):
     model = Doctor
     template_name = 'core/doctor/list.html'
     context_object_name = 'doctor_list'
@@ -40,17 +42,20 @@ class doctor_ListView(ListView):
         context['title'] = 'Medical'
         context['title1'] = 'Sistema Medico Online'
         return context
-    
-class medicament_ListView(ListView):
+
+
+class MedicamentListView(LoginRequiredMixin,ListView):
     model = Medications
     template_name = 'core/doctor/list_medicament.html'
     context_object_name = 'medicament_list'
-    
+    login_url = '/signin/'
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Medical'
         context['title1'] = 'Sistema Medico Online'
         return context
+
     
 # def doctor_create(request):
 #    data = {"title": "Doctores","title1": "Añadir Doctores"}
@@ -171,7 +176,7 @@ class doctor_DeleteView(DeleteView):
         context['title1'] = 'Eliminar doctor'
         return context
     
-class medicament_DeleteView(DeleteView):
+class Medicament_DeleteView(DeleteView):
     model = Medications
     template_name = 'core/doctor/delete_medicament.html'
     success_url = reverse_lazy('core:medicament_list')
