@@ -1,0 +1,52 @@
+{% extends 'core/layout.html' %}
+{% block content %}
+<!-- Tabla con datos de doctores -->
+<a href="{% url 'core:doctor_create' %}" class="btn btn-primary">Crear Registro</a>
+
+<table class="table table-hover table-bordered">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Profesión</th>
+            <th scope="col">Clínica</th>
+            <th scope="col">Sexo</th>
+            <th scope="col">Fecha de Nacimiento</th>
+            <th scope="col">Dirección</th>
+            <th scope="col" class="text-center">Acciones</th> <!-- Nueva columna de Acciones -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for doctor in doctor_list %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ doctor.first_name }}</td>
+            <td>{{ doctor.last_name }}</td>
+            <td>
+                {% for profession in doctor.profession.all %}
+                    {{ profession.description }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </td>
+            <td>{{ doctor.clinic.name }}</td>
+            <td>{{ doctor.get_sex_display }}</td>
+            <td>{{ doctor.birth_date }}</td>
+            <td>{{ doctor.address }}</td>
+            <td class="text-center">
+                <!-- Botones de acciones con el mismo tamaño -->
+                <div class="btn-group" role="group" aria-label="Acciones">
+                    <a href="{% url 'core:doctor_update' doctor.id %}" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="{% url 'core:doctor_delete' doctor.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                </div>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="9" class="text-center">No hay doctores disponibles</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

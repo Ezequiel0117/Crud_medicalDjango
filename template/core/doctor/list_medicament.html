@@ -1,0 +1,44 @@
+{% extends 'core/layout.html' %}
+{% block content %}
+<a href="{% url 'core:medicament_create' %}" class="btn btn-primary">Crear Medicamento</a>
+
+<table class="table table-hover table-bordered">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Usuario</th>
+            <th scope="col" class="text-center">Acciones</th> <!-- Nueva columna de Acciones -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for medication in medicament_list %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ medication.description }}</td>
+            <td>{{ medication.price }}</td>
+            <td>{{ medication.stock }}</td>
+            <td>{{ medication.is_active|yesno:"Activo,Inactivo" }}</td>
+            <td>{{ medication.user.username }}</td>
+            <td class="text-center">
+                <!-- Botones de acciones con el mismo tamaño -->
+                <div class="btn-group" role="group" aria-label="Acciones">
+                    <a href="{% url 'core:medicament_update' medication.id %}" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="{% url 'core:medicament_delete' medication.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                </div>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7" class="text-center">No hay medicamentos disponibles</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+{% endblock %}

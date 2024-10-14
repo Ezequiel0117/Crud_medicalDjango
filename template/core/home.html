@@ -1,0 +1,58 @@
+{% extends 'core/layout.html' %}
+
+{% block content %}
+<!-- Sección principal (Hero) -->
+<section class="features text-center text-dark"> <!-- Asegúrate de que sea text-dark -->
+    <div class="container">
+        <h1>{{title1}}</h1>
+        <p class="lead">Tu salud es nuestra prioridad</p>
+        <a href="#" class="btn btn-primary btn-lg">Comenzar</a>
+    </div>
+</section>
+
+<!-- Sección de servicios destacados -->
+<section class="features py-5 text-center text-dark"> <!-- Asegúrate de que sea text-dark -->
+    <div class="container">
+        <h2 class="mb-4">Nuestros Servicios</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <i class="fas fa-user-md fa-3x mb-3"></i>
+                        <h5 class="card-title">Consultas Médicas</h5>
+                        <p class="card-text">Accede a consultas con nuestros profesionales de manera rápida y segura.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <i class="fas fa-pills fa-3x mb-3"></i>
+                        <h5 class="card-title">Recetas Electrónicas</h5>
+                        <p class="card-text">Recibe tus recetas médicas de manera electrónica, sin complicaciones.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <i class="fas fa-heartbeat fa-3x mb-3"></i>
+                        <h5 class="card-title">Seguimiento de Pacientes</h5>
+                        <p class="card-text">Monitorea tu salud desde casa con nuestras herramientas de seguimiento.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de contacto -->
+<section class="py-5 bg-light text-dark"> <!-- Asegúrate de que sea text-dark -->
+    <div class="container text-center">
+        <h2>Contáctanos</h2>
+        <p class="mb-4">Si tienes alguna consulta, no dudes en comunicarte con nosotros.</p>
+        <a href="#" class="btn btn-outline-primary btn-lg">Contáctanos</a>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Portfolio</title>
+    <!-- Incluir Bootstrap desde un CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Incluir iconos de Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Estilos personalizados -->
+    <style>
+        .hero {
+            background-image: url('https://www.example.com/imagen_medica.jpg'); /* Cambia esta URL por una imagen real */
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .hero h1 {
+            font-size: 3rem;
+        }
+        .features .card {
+            border: none;
+            transition: transform 0.3s;
+        }
+        .features .card:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="text-light">
+
+    {% include 'core/partials/navbar.html' %}
+
+    <div class="container p-4">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- Scripts de Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

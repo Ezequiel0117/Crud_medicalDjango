@@ -1,0 +1,38 @@
+{% load static %}
+<!-- Barra de navegación -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'core:home' %}">Sistema Médico</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'core:home' %}">Inicio <span class="sr-only">(actual)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'core:doctor_list' %}">Doctores</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'core:medicament_list' %}">Medicamentos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contacto</a>
+            </li>
+
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'core:logout' %}">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item mr-3">
+                <a class="nav-link" href="{% url 'core:signup' %}">Registrate</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'core:signin' %}">Iniciar Sesión</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
