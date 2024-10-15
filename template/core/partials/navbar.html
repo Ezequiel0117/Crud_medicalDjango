@@ -22,14 +22,14 @@
 
             {% if user.is_authenticated %}
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'core:logout' %}">Logout</a>
+                <a class="nav-link" href="{% url 'security:logout' %}">Logout</a>
             </li>
             {% else %}
             <li class="nav-item mr-3">
-                <a class="nav-link" href="{% url 'core:signup' %}">Registrate</a>
+                <a class="nav-link" href="{% url 'security:signup' %}">Registrate</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'core:signin' %}">Iniciar Sesión</a>
+                <a class="nav-link" href="{% url 'security:signin' %}">Iniciar Sesión</a>
             </li>
             {% endif %}
         </ul>

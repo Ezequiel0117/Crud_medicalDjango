@@ -1,17 +1,10 @@
-from typing import Any
-from django.forms import BaseModelForm
-from django.http import HttpResponse
 from django.urls import reverse_lazy
-from django.db.models.query import QuerySet
-from django.shortcuts import redirect, render
-from django.contrib.auth import login, logout, authenticate
-from django.db import IntegrityError
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.shortcuts import render
 from aplication.core.forms import DoctorForm, MedicationForm
 from aplication.core.models import Doctor, Medications
 from django.views.generic import ListView, DeleteView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from aplication.security import views 
 # Create your views here.
 
          
@@ -186,55 +179,3 @@ class Medicament_DeleteView(DeleteView):
         context['medication'] = self.object  # Renombrar el objeto a 'medication'
         return context  # Corrección aquí, retornas solo 'context'
     
-    
-
-def signup(request):
-    if request.method == "GET":
-        return render(request, "core/signup.html", {
-            "form": UserCreationForm
-        })
-    else:
-        if request.POST['password1'] == request.POST['password2']:
-            # Register user
-            try:
-                user = User.objects.create_user(
-                    username=request.POST['username'], password=request.POST
-                    ['password1'])
-                user.save()
-                login(request, user)  # Crear cookie y redireccionarlo
-                # Return para una vez que termine ahi una vez que se guarde el usuario
-                return redirect('core:home')
-            except IntegrityError:
-                return render(request, "core/signup.html", {
-                    'form': UserCreationForm,
-                    "error": 'Username already exists'
-                })
-        return render(request, "core/signup.html", {
-            'form': UserCreationForm,
-            "error": 'Password do not match'
-        })
-        
-def signout(request):
-    logout(request)
-    # Return para redireccionar al home después de cerrar sesión
-    return redirect('core:home')
-
-
-def siging(request):
-    if request.method == 'GET':
-        return render(request, "core/signin.html", {
-            'form': AuthenticationForm
-        })
-    else:
-        user = authenticate(
-            request, username=request.POST['username'],password=request.POST
-            ['password'])
-        if user is None:
-            return render(request, 'core/signin.html', {
-                'form': AuthenticationForm,
-                'error': 'Username or password is incorrect'
-            })
-        else:
-            login(request, user)
-            return redirect('core:home')
-

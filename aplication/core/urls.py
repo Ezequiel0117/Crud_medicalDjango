@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
 from aplication.core import views
@@ -16,10 +16,6 @@ urlpatterns = [
   path('medicament_create/', views.Medicament_CreateView.as_view(),name="medicament_create"),
   path('medicament_update/<int:pk>/', views.Medicament_UpdateView.as_view(),name='medicament_update'),
   path('medicament_delete/<int:pk>/', views.Medicament_DeleteView.as_view(),name='medicament_delete'),
-  path('signup/', views.signup, name='signup'),
-  path('logout/', views.signout, name='logout'),
-  path('signin/', views.siging, name='signin'),
-  
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
